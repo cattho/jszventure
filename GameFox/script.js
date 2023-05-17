@@ -1,4 +1,4 @@
-const canvas = document.getElementById("canvas1");
+const canvas = document.getElementById("canvas-dog");
 const ctx = canvas.getContext("2d");
 const dropdown = document.getElementById("animations");
 let playerState = "idle";
