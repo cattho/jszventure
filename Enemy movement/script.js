@@ -7,12 +7,13 @@ const enemyArray = []; //se crea este array vacio para que el ciclo pushee los e
 
 const enemyImage = new Image();
 enemyImage.src = "./Assests/enemy1.png";
+let gameFrame = 0;
 
 //create enemy class
 class Enemy {
   constructor() {
-    this.positionX = Math.random() * CANVAS_WIDTH;
-    this.positionY = Math.random() * CANVAS_HEIGHT;
+    this.positionX = Math.random() * canvas.width;
+    this.positionY = Math.random() * canvas.height;
     this.speed = Math.random() * 4 - 2;
     this.spriteWidth = 293; //muestra el ancho de la unidad enemiga,
     this.spriteHeight = 155;
@@ -26,15 +27,17 @@ class Enemy {
     this.positionX += this.speed;
     this.positionY += this.speed;
     //animacion de unidades enemigas
-    this.frame < 4 ? (this.frame = 0) : this.frame++;
+    if (gameFrame % 2 === 0) {
+      this.frame > 4 ? this.frame = 0 : this.frame++;
+    }
   }
 
   //draw method render image enemy
   draw() {
-    // ctx.strokeRect(this.positionX, this.positionY, this.width, this.height);
+    ctx.strokeRect(this.positionX, this.positionY, this.width, this.height);
     ctx.drawImage(
       enemyImage,
-      this.frame * this.width,
+      this.frame * this.spriteWidth, //multiplico la posicion del frame por el tamaño del enemigo
       0,
       this.spriteWidth,
       this.spriteHeight,
@@ -56,13 +59,11 @@ for (let i = 0; i < numberOfEnemies; i++) {
 //animation function
 const animate = () => {
   ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-  // enemy1.update(); // call the "update()" method to render position
-  // enemy1.draw();
-
   enemyArray.forEach((enemy) => {
     enemy.update();
     enemy.draw();
   });
+  gameFrame++;
   requestAnimationFrame(animate);
 };
 
