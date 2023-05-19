@@ -1,0 +1,11 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#canvasGhost{
+    border: 3px solid burlywood;
+    width: 500px;
+    height: 900px;
+}
