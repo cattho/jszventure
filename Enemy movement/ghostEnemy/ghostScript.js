@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvasGhost");
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = (canvas.width = 500);
 const CANVAS_HEIGHT = (canvas.height = 1000);
-const numberEnemies = 200;
+const numberEnemies = 8;
 const enemyArray = [];
 
 let gameFrame = 0;
@@ -18,13 +18,15 @@ class Ghost {
     this.width = this.spriteWidth / 1.5;
     this.height = this.spriteHeight / 1.5;
     this.frame = 0;
+    this.ghostWavesSpeed = Math.floor(Math.random() * 3 + 1);
   }
 
   update() {
-    // this.positionX += Math.random() * 5 - 1;
-    this.positionY += Math.random() * - 1;
+    this.positionY += Math.random() * -1;
 
-    //falta el if
+    if (gameFrame % this.ghostWavesSpeed === 0) {
+      this.frame > 4 ? (this.frame = 0) : this.frame++;
+    }
   }
 
   draw() {
