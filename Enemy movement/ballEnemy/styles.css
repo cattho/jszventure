@@ -1,0 +1,11 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ballEnemy {
+  border: 3px solid rgb(33, 226, 146);
+  width: 400px;
+  height: 900px;
+}
