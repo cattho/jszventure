@@ -13,19 +13,23 @@ class BallEnemy {
     this.image.src = "../Assests/enemy4.png";
     this.positionX = Math.random() * canvas.width;
     this.positionY = Math.random() * canvas.height;
-    this.speed = Math.random() * 4 - 2;
+    this.speed = Math.random() * 1;
     this.spriteWidth = 213;
     this.spriteHeight = 212;
     this.width = this.spriteWidth / 1.5;
     this.height = this.spriteHeight / 1.5;
     this.frame = 0;
     this.flapSpeed = Math.floor(Math.random() * 3 + 1);
+    this.angle = Math.random() * 2;
+    this.angleSpeed = Math.random() * 0.2;
+    this.enemyCurve = Math.random() * 10;
   }
 
   update() {
-    // this.positionX += Math.random() * 5 - 2.5;
-    this.positionY += Math.random() * 5 - 2.5;
-    this.positionY + this.width < 0 ? (this.positionY = canvas.width) : null;
+    this.positionY += this.speed;
+    this.positionX += this.enemyCurve * Math.sin(this.angle);
+    this.angle += this.angleSpeed;
+    this.positionY + this.width < 0 ? (this.positionY = canvas.height) : null;
     if (gameFrame % this.flapSpeed === 0) {
       this.frame > 4 ? (this.frame = 0) : this.frame++;
     }
@@ -60,4 +64,4 @@ const animate = () => {
   requestAnimationFrame(animate);
 };
 
-animate()
+animate();
