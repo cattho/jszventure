@@ -23,7 +23,6 @@ class Ghost {
 
   update() {
     this.positionY += Math.random() * -1;
-
     if (gameFrame % this.ghostWavesSpeed === 0) {
       this.frame > 4 ? (this.frame = 0) : this.frame++;
     }
